@@ -1,0 +1,12 @@
+app-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

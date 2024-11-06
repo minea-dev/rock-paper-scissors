@@ -1,0 +1,36 @@
+@import '../abstracts/variables';
+
+.login-screen,
+.register-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  color: var(--color-title);
+}
+
+.input {
+  width: 100%;
+  padding: 0.6rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: white;
+  background-color: var(--color-mid-purple);
+  border: none;
+  border-radius: 8px;
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--color-pale-pink);
+}
+
+.input:focus {
+  background-color: var(--color-dark-purple);
+}

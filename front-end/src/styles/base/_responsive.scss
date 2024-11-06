@@ -1,0 +1,17 @@
+@media (min-width: 600px) {
+  .container {
+    max-width: 600px;
+  }
+  .auth-options {
+    gap: 1rem;
+  }
+  .setting-option {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  label {
+    margin-bottom: 0;
+  }
+}

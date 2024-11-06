@@ -1,0 +1,27 @@
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  transition: background 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-soft-pink);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-intermediate-purple);
+}
+
+.btn-secondary {
+  background-color: var(--color-light-lavender);
+  color: var(--color-black);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-pale-pink);
+}

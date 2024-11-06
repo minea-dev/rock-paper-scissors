@@ -1,0 +1,13 @@
+.text-secondary {
+  font-size: 0.75rem;
+  color: var(--color-light-lavender);
+}
+
+.link {
+  color: var(--color-title);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}

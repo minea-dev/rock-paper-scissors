@@ -1,0 +1,24 @@
+<div class="container">
+  <header class="header">
+    <h1>📝 Register 📝</h1>
+  </header>
+
+  <section class="register-screen">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input id="username" formControlName="username" type="text" class="input" placeholder="Create a username">
+      </div>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" type="email" class="input" placeholder="Enter your email">
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input id="password" formControlName="password" type="password" class="input" placeholder="Create a password">
+      </div>
+      <button type="submit" class="btn-primary">Sign Up</button>
+    </form>
+    <p class="text-secondary">Already have an account? <a routerLink="/login" class="link">Log in</a></p>
+  </section>
+</div>

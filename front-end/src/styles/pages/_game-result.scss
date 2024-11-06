@@ -1,0 +1,36 @@
+@import '../abstracts/variables';
+
+.game-result-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.result-message {
+  text-align: center;
+}
+
+.result-text {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  color: var(--color-title);
+  display: none;
+}
+
+.result-text.active {
+  display: block;
+}
+
+.win {
+  color: var(--color-light-lavender);
+}
+
+.lose {
+  color: var(--color-soft-pink);
+}
+
+.play-again-btn {
+  width: 60%;
+  padding: 0.8rem;
+}

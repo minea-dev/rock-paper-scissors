@@ -1,0 +1,45 @@
+@import '../abstracts/variables';
+
+.settings-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.auth-options {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.setting-option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 0.8rem;
+  color: var(--color-title);
+}
+
+label {
+  margin-bottom: 0.3rem;
+}
+
+.select {
+  width: 100%;
+  padding: 0.6rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: white;
+  background-color: var(--color-mid-purple);
+  border: none;
+  border-radius: 8px;
+  outline: none;
+}
+
+.select:hover {
+  background-color: var(--color-dark-purple);
+}
+
+.start-game {
+  margin-top: 1.5rem;
+}

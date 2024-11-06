@@ -1,0 +1,18 @@
+<div class="container">
+  <header class="header">
+    <h1>🤔 Choose Your Move 🤔</h1>
+  </header>
+
+  <section class="choose-move-screen">
+    <div class="carousel">
+      <button class="carousel-btn prev-btn" (click)="prevMove()"><-</button>
+      <div class="carousel-items">
+        <div class="move-item" *ngFor="let move of moves; let i = index" [class.active]="i === activeIndex">
+          {{ move }}
+        </div>
+      </div>
+      <button class="carousel-btn next-btn" (click)="nextMove()">-></button>
+    </div>
+    <button class="btn-primary throw-btn" (click)="throwMove()">Throw!</button>
+  </section>
+</div>

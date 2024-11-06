@@ -1,0 +1,48 @@
+<div class="container">
+  <header class="header">
+    <h1>🛠️ Game Settings 🛠️</h1>
+  </header>
+
+  <section class="settings-screen">
+    <!-- Botones de autenticación -->
+    <div class="auth-options">
+      <button class="btn-primary" (click)="setAuthMode('login')">Log In</button>
+      <button class="btn-primary" (click)="setAuthMode('register')">Register</button>
+      <button class="btn-secondary" (click)="setAuthMode('guest')">Continue as Guest</button>
+    </div>
+
+    <!-- Formulario de autenticación -->
+    <form [formGroup]="authForm">
+      <div *ngIf="authMode === 'guest'">
+        <label for="guestName">Enter Name:</label>
+        <input id="guestName" formControlName="guestName" type="text" placeholder="Enter your name">
+      </div>
+    </form>
+
+    <!-- Configuración del juego -->
+    <div class="setting-option">
+      <label for="rounds">Number of Rounds:</label>
+      <select id="rounds" [(ngModel)]="rounds">
+        <option *ngFor="let round of [1, 3, 5, 7]" [value]="round">{{ round }}</option>
+      </select>
+    </div>
+
+    <div class="setting-option">
+      <label for="mode">Mode:</label>
+      <select id="mode" [(ngModel)]="mode">
+        <option value="normal">Normal ✋</option>
+        <option value="spock">Spock 🖖</option>
+      </select>
+    </div>
+
+    <div class="setting-option">
+      <label for="opponent">Opponent:</label>
+      <select id="opponent" [(ngModel)]="opponent">
+        <option value="machine">Machine 👾</option>
+        <option value="link">Generate Link 🔗</option>
+      </select>
+    </div>
+
+    <button class="btn-primary start-game" (click)="startGame()">Start Game</button>
+  </section>
+</div>

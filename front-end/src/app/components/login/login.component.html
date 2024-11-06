@@ -1,0 +1,20 @@
+<div class="container">
+  <header class="header">
+    <h1>🔑 Login 🔑</h1>
+  </header>
+
+  <section class="login-screen">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input id="username" formControlName="username" type="text" class="input" placeholder="Enter your username">
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input id="password" formControlName="password" type="password" class="input" placeholder="Enter your password">
+      </div>
+      <button type="submit" class="btn-primary">Log In</button>
+    </form>
+    <p class="text-secondary">Don't have an account? <a routerLink="/register" class="link">Sign up</a></p>
+  </section>
+</div>

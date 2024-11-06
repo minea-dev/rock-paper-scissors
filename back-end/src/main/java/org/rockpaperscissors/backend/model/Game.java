@@ -53,7 +53,7 @@ public class Game {
     public Game() {}
 
     public enum GameResult {
-        PLAYER1_WIN, PLAYER2_WIN, DRAW
+        PLAYER1_WIN, PLAYER2_WIN, DRAW, ONGOING
     }
 }
 
