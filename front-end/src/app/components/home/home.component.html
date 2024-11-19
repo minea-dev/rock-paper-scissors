@@ -1,10 +1,19 @@
 <div class="container">
   <header class="header">
-    <h1>🎮 Rock Paper Scissors 🎮</h1>
+    <div class="title">
+      <h1>🎮 Rock Paper Scissors 🎮</h1>
+    </div>
+
+    <p class="subtitle" *ngIf="isLoggedIn && userName && userName.trim() !== ''">Hi <strong>{{ userName }}</strong>  👋! Welcome back!</p>
   </header>
 
   <section class="home">
-    <button class="btn-primary" (click)="navigateToSettings()">Play</button>
-    <button class="btn-secondary" (click)="navigateToHistory()">History</button>
+    <button class="btn-primary" *ngIf="isLoggedIn && userName" (click)="navigateTo('settings')">Play</button>
+    <button class="btn-secondary" *ngIf="isLoggedIn && userName" (click)="navigateTo('history')">History</button>
+    <button class="btn-secondary" *ngIf="isLoggedIn && userName" (click)="logout()">Logout</button>
+
+    <button class="btn-primary" *ngIf="!isLoggedIn || !userName" (click)="navigateTo('settings')">Play</button>
+    <button class="btn-secondary" *ngIf="!isLoggedIn || !userName" (click)="navigateTo('login')">Log In</button>
+    <button class="btn-secondary" *ngIf="!isLoggedIn || !userName" (click)="navigateTo('register')">Register</button>
   </section>
 </div>

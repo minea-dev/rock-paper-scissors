@@ -1,0 +1,26 @@
+input,
+select {
+  outline: none;
+  width: 100%;
+  padding: 0.8rem 1rem 1rem 1rem;
+  font-size: 1rem;
+  color:  var(--gray);
+  background-color: transparent;
+  border: 2px solid var(--color-mid-purple);
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: monospace;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--bright-purple);
+}
+
+@supports (-moz-appearance: none) {
+  input,
+  select {
+    padding: 0.6rem 0.7rem 0.7rem 0.7rem;
+    font-size: 0.8rem;
+  }
+}

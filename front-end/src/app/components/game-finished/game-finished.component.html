@@ -1,0 +1,50 @@
+<div class="container game-result">
+  <header class="header">
+    <h1>🏆 Game Result 🏆</h1>
+  </header>
+
+  <div *ngIf="loading" class="loading">Loading game details...</div>
+
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+
+  <div *ngIf="!loading && gameDetails" class="game-details">
+    <table class="result-table">
+      <thead>
+      <tr>
+        <th>Player 1</th>
+        <th>Player 2</th>
+        <th>Rounds Played</th>
+        <th>Game Result</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{ gameDetails.player1 }}</td>
+        <td>{{ gameDetails.player2 }}</td>
+        <td>{{ gameDetails.rounds }}</td>
+        <td>{{ translateRoundResult(gameDetails.gameResult, gameDetails.player1, gameDetails.player2) }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <h3>Round Details</h3>
+    <table class="round-table">
+      <thead>
+      <tr>
+        <th>Round</th>
+        <th>Result</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let round of gameDetails.roundDetails; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ translateRoundResult(round.roundResult, gameDetails.player1, gameDetails.player2) }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!loading && gameDetails">
+    <button (click)="playAgain()" class="btn-primary">Play Again</button>
+  </div>
+</div>

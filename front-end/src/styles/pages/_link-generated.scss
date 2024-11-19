@@ -1,0 +1,79 @@
+.shared-link-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  max-width: 800px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 1rem;
+  color: var(--color-title);
+  text-align: center;
+}
+
+.shared-link-container .header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.shared-link-container .header h2{
+  font-size: 1.5rem;
+  margin-bottom: 1.4rem;
+}
+
+.shared-link-container .header p, , .play-section p  {
+  font-size: 1rem;
+  font-family: monospace;
+  line-height: 1.4;
+  font-weight: bold;
+  color: var(--color-light-lavender);
+}
+
+.link-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  align-items: center;
+}
+
+.link-section p {
+  margin-top: 1.3rem;
+  color: var(--color-title);
+  font-size: 1.1rem;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.link-section a {
+  color: var( --magenta-pink);
+  font-size: 1.4rem;
+  font-family: monospace;
+  font-weight: bold;
+  text-decoration: underline;
+  word-break: keep-all;
+}
+
+.link-section a:hover {
+  color: var(--light-blue);
+}
+
+.link-section .btn-back {
+  max-width: 11.5rem;
+  font-size: 0.8rem;
+}
+
+
+.link-section .link-copied {
+  font-size: 0.8rem;
+  color: var(--green);
+  font-family: monospace;
+}
+
+.play-section {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
+}
+

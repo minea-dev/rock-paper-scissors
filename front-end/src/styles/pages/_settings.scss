@@ -1,45 +1,59 @@
-@import '../abstracts/variables';
-
-.settings-screen {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.auth-options {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
-}
-
 .setting-option {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-size: 0.8rem;
-  color: var(--color-title);
-}
-
-label {
-  margin-bottom: 0.3rem;
-}
-
-.select {
-  width: 100%;
-  padding: 0.6rem;
-  font-family: inherit;
   font-size: 0.9rem;
-  color: white;
-  background-color: var(--color-mid-purple);
-  border: none;
-  border-radius: 8px;
-  outline: none;
+  color: var( --color-light-lavender);
+  gap: 1rem;
+  width: 100%;
 }
 
-.select:hover {
-  background-color: var(--color-dark-purple);
+.setting-option .value-display {
+  font-family: monospace;
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 0.5rem;
 }
 
-.start-game {
-  margin-top: 1.5rem;
+.auth-options p {
+  color: var( --color-light-purple);
+}
+
+.setting-option label{
+  margin-top: 1rem;
+  margin-bottom: 0;
+  text-align: left;
+  width: 100%;
+}
+
+form label, h3 {
+  color: var( --color-light-lavender);
+}
+
+.setting-option form input, .settings-screen form input {
+  margin-top: 1rem;
+}
+
+
+.subtitle {
+  color: var(--color-light-purple);
+}
+
+.subtitle a {
+  color: var( --magenta-pink);
+}
+
+.subtitle a:hover {
+  color: var(--bright-purple);
+}
+
+.settings-screen form small, .error-message small {
+  font-family: monospace;
+  font-size: 0.8rem;
+}
+
+@supports (-moz-appearance: none) {
+  .settings-container button {
+    padding: 0.5rem 2rem;
+  }
 }

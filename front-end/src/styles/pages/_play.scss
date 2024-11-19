@@ -1,0 +1,173 @@
+.play-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.move-item-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: auto;
+  position: relative;
+  width: fit-content;
+}
+
+.move-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+.move-icon {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.move-name {
+  margin-top: 10px;
+  font-family: monospace;
+  font-size: 1.2rem;
+  color: white;
+  text-align: center;
+}
+
+.carousel-btn {
+  background-color: var(--color-light-purple);
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 55%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  position: relative;
+}
+
+.carousel-btn:hover {
+  transform: scale(1.1);
+  background-color: var(--blue);
+}
+
+.carousel-btn span {
+  margin-top: -0.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.prev-btn {
+  margin-right: -60px;
+}
+
+.next-btn {
+  margin-left: -60px;
+}
+
+.move-explanation {
+  margin-top: 15px;
+  margin-bottom: 25px;
+  padding: 10px;
+  width: 300px;
+  min-height: 50px;
+  font-family: monospace;
+  font-size: 1rem;
+  background-color: rgba(128, 0, 128, 0.4);
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0s 0.5s;
+}
+
+.move-item:hover .move-explanation {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease, visibility 0s 0s;
+}
+
+.container .play-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding-bottom: 20px;
+}
+
+.playing-info {
+  margin-top: 3rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scoreboard {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.round-info {
+  font-weight: bold;
+  background-color: rgba(145, 105, 195, 0.36);
+  padding: 10px;
+  margin: 0;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.player-score, .versus {
+  margin: 0 10px;
+}
+
+.versus {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.round-result {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.round-result p, .round-result .explanation-game, .round-result .moves{
+  font-family: monospace;
+  font-size: 1.2rem;
+  justify-items: center;
+}
+
+.round-result .moves {
+  margin: 1rem;
+}
+
+.round-result .explanation-game {
+  margin-bottom: 1.5rem;
+}
+
+.loading-text {
+  font-family: monospace;
+  margin-top: 1.5rem;
+}
+
+
+
+
+
+

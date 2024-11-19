@@ -1,20 +1,50 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { NavigationService } from '../../services/navigation.service';
+import { NgIf } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  imports: [NgIf],
+  standalone: true
 })
-export class HomeComponent {
-  constructor(private router: Router) {}
+export class HomeComponent implements OnInit {
+  isLoggedIn = false;
+  userName: string | null = null;
+  private authSubscription: Subscription | null = null;
 
-  navigateToSettings(): void {
-    this.router.navigate(['/settings']);
+  constructor(
+    private authService: AuthService,
+    private navigationService: NavigationService
+  ) {}
+
+  ngOnInit(): void {
+
+    const isLogged = !!localStorage.getItem('userName');
+    this.authService.closeGame(isLogged);
+
+    this.authSubscription = this.authService.isLoggedIn$.subscribe(status => {
+      this.isLoggedIn = status;
+    });
+    this.authService.userName$.subscribe(username => {
+      this.userName = username;
+    });
+    this.authService.checkSession();
   }
 
-  navigateToHistory(): void {
-    this.router.navigate(['/history']);
+  ngOnDestroy(): void {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
+  }
+
+  public navigateTo(route: string): void {
+    this.navigationService.navigateTo(route);
+  }
+
+  public logout(): void {
+    this.authService.logout();
   }
 }

@@ -14,8 +14,8 @@ public class Game {
 
     @Getter
     @Setter
-    @ManyToOne
-    @JoinColumn(name = "mode_id", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private GameMode mode;
 
     @Getter
@@ -43,8 +43,14 @@ public class Game {
     @Getter
     @Setter
     @Enumerated(EnumType.STRING)
-    @Column(nullable = true)
+    @Column(nullable = false)
     private GameResult result;
+
+    @Getter
+    @Setter
+    @Enumerated(EnumType.STRING)
+    @Column(name = "game_state")
+    private GameState gameState;  // Nullable GameState based on isRealTime
 
     @Getter
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -52,9 +58,42 @@ public class Game {
 
     public Game() {}
 
+    public enum GameMode {
+        CLASSIC, SPOCK;
+
+        public static GameMode fromString(String mode) {
+            for (GameMode gameMode : GameMode.values()) {
+                if (gameMode.name().equalsIgnoreCase(mode)) {
+                    return gameMode;
+                }
+            }
+            return null;
+        }
+    }
+
     public enum GameResult {
-        PLAYER1_WIN, PLAYER2_WIN, DRAW, ONGOING
+        PLAYER1_WIN, PLAYER2_WIN, DRAW, CONFIGURED, ONGOING;
+
+        public static GameResult fromString(String result) {
+            for (GameResult gameResult : GameResult.values()) {
+                if (gameResult.name().equalsIgnoreCase(result)) {
+                    return gameResult;
+                }
+            }
+            return null;
+        }
+    }
+
+    public enum GameState {
+        WAITING, IN_PROGRESS, ABANDONED, FINISHED;
+
+        public static GameState fromString(String state) {
+            for (GameState gameState : GameState.values()) {
+                if (gameState.name().equalsIgnoreCase(state)) {
+                    return gameState;
+                }
+            }
+            return null;
+        }
     }
 }
-
-

@@ -1,0 +1,33 @@
+.game-history-table tr th {
+  font-family: monospace, bold;
+}
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination button {
+  padding: 10px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  background-color: var(--color-black);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  width: 10%;
+}
+
+.pagination button span {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.pagination button:disabled {
+  background-color: #cccccc;
+}
+
+.pagination span {
+  margin: 0 10px;
+  font-weight: bold;
+}

@@ -1,27 +1,86 @@
 button {
   cursor: pointer;
   font-family: inherit;
-  font-size: 0.9rem;
-  padding: 0.8rem;
+  font-size: 1rem;
+  padding: 1rem 2rem;
   border: none;
   border-radius: 8px;
   color: white;
   transition: background 0.2s ease;
+  background-color: transparent;
+  width: 100%
 }
-
+@supports (-moz-appearance: none) {
+  button {
+    padding: 0.6rem 2rem;
+  }
+}
 .btn-primary {
-  background-color: var(--color-soft-pink);
+  background-color: var(--magenta-pink);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-intermediate-purple);
+  background-color: var(--magenta-dark);
 }
 
 .btn-secondary {
-  background-color: var(--color-light-lavender);
-  color: var(--color-black);
+  background-color: var(--bright-purple);
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-pale-pink);
+  background-color: var(--dark-purple);
+}
+
+.btn-back {
+  background-color: var(--color-mid-purple);
+  color: white;
+  margin-top: 0.5rem;
+}
+
+.btn-back:hover {
+  background-color: var(  --color-dark-purple);
+}
+
+.start-game {
+  margin-top: 1.5rem;
+}
+
+.btn-leave-game {
+  width: 55%;
+  background-color: var(--dark-purple);
+  color: white;
+  font-size: 0.6rem;
+}
+
+.btn-leave-game:hover {
+  background-color: var(--color-black);
+}
+
+button.btn-leave-game {
+  outline: none;
+  padding: 0.8rem 1rem 1rem 1rem;
+  font-size: 1rem;
+  color: var(--gray);
+  background-color: transparent;
+  border: 2px solid var(--color-mid-purple);
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: monospace;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+button.btn-leave-game:focus {
+  border-color: var(--bright-purple);
+}
+
+@supports (-moz-appearance: none) {
+  button.btn-leave-game {
+    padding: 0.6rem 0.7rem 0.7rem 0.7rem;
+    font-size: 0.8rem;
+  }
+}
+
+.btn-play {
+  width: 78%;
 }

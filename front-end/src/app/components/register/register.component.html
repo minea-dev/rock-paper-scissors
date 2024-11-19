@@ -4,21 +4,62 @@
   </header>
 
   <section class="register-screen">
-    <form [formGroup]="registerForm" (ngSubmit)="register()">
-      <div class="input-group">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
         <label for="username">Username</label>
-        <input id="username" formControlName="username" type="text" class="input" placeholder="Create a username">
+        <div class="input-container">
+          <input
+            id="username"
+            type="text"
+            formControlName="username"
+            minlength="2"
+            maxlength="9"
+            (blur)="registerForm.controls['username'].markAsTouched()"
+          />
+        </div>
+        <div *ngIf="isFieldInvalid('username')">
+          <small class="error">{{ getUsernameErrorMessage() }}</small>
+        </div>
       </div>
-      <div class="input-group">
+
+      <div class="form-group">
         <label for="email">Email</label>
-        <input id="email" formControlName="email" type="email" class="input" placeholder="Enter your email">
+        <div class="input-container">
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            (blur)="registerForm.controls['email'].markAsTouched()"
+          />
+        </div>
+        <div *ngIf="isFieldInvalid('email')">
+          <small class="error">Please enter a valid email</small>
+        </div>
       </div>
-      <div class="input-group">
+
+      <div class="form-group">
         <label for="password">Password</label>
-        <input id="password" formControlName="password" type="password" class="input" placeholder="Create a password">
+        <div class="input-container">
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            maxlength="16"
+            (blur)="registerForm.controls['password'].markAsTouched()"
+          />
+        </div>
+        <div *ngIf="isFieldInvalid('password')">
+          <small class="error">{{ getPasswordErrorMessage() }}</small>
+        </div>
       </div>
-      <button type="submit" class="btn-primary">Sign Up</button>
+
+      <div class="error-message" *ngIf="errorMessage">
+        <p>{{ errorMessage }}</p>
+      </div>
+      <p class="text-secondary">Already have an account? <a routerLink="/login" class="link">Log in</a></p>
+
+      <button class="btn-primary" type="submit" [disabled]="registerForm.invalid">Register</button>
     </form>
-    <p class="text-secondary">Already have an account? <a routerLink="/login" class="link">Log in</a></p>
   </section>
+  <button class="btn-back" (click)="goBack()">← Back</button>
 </div>

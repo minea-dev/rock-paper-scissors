@@ -1,18 +1,68 @@
-<div class="container">
+<div class="container play-component">
   <header class="header">
-    <h1>🤔 Choose Your Move 🤔</h1>
+    <h1>{{ roundResult ? '🔥 Round Result 🔥' : '🤔 Choose Move 🤔' }}</h1>
   </header>
 
-  <section class="choose-move-screen">
+  <div class="overlay" *ngIf="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <div *ngIf="loadingOpponent" class="loading-text">
+    <p *ngIf="opponentName">⏳ Waiting for {{ opponentName }} to make their move... They are taking their sweet time! 😅</p>
+    <p *ngIf="!opponentName">⏳ Waiting for your human to make their move... Machines are faster! 😤</p>
+  </div>
+
+  <section class="choose-move-screen" *ngIf="!roundResult && !loading && !loadingOpponent">
     <div class="carousel">
-      <button class="carousel-btn prev-btn" (click)="prevMove()"><-</button>
-      <div class="carousel-items">
-        <div class="move-item" *ngFor="let move of moves; let i = index" [class.active]="i === activeIndex">
-          {{ move }}
+      <div class="move-item-container">
+        <button class="carousel-btn prev-btn" (click)="prevMove()"><span>&#8592;</span></button>
+        <div class="move-item" tabindex="0" role="button" [title]="getMoveExplanation(filteredMoves[activeIndex].name)">
+          <div class="image-fixed">
+            <img [src]="'/assets/' + filteredMoves[activeIndex].image" [alt]="filteredMoves[activeIndex].name" class="move-icon" />
+          </div>
+          <p class="move-name">{{ filteredMoves[activeIndex].name }}</p>
+          <div class="move-explanation">
+            {{ getMoveExplanation(filteredMoves[activeIndex].name) }}
+          </div>
         </div>
+        <button class="carousel-btn next-btn" (click)="nextMove()"><span>&#8594;</span></button>
       </div>
-      <button class="carousel-btn next-btn" (click)="nextMove()">-></button>
     </div>
-    <button class="btn-primary throw-btn" (click)="throwMove()">Throw!</button>
+    <button class="btn-primary" (click)="throwMove()">Throw!</button>
   </section>
+
+
+  <div class="round-result" *ngIf="roundResult && !loading && !loadingOpponent">
+    <p>{{ getRoundResultMessage(roundResult) }}</p>
+
+    <div class="moves">
+      <p><strong>{{ player1Name }} = {{ translateMoveToEmoji(player1Move!) }} ({{ player1Move }})</strong></p>
+      <p><strong>{{ player2Name }} = {{ translateMoveToEmoji(player2Move!) }} ({{ player2Move }})</strong></p>
+    </div>
+
+    <div class="explanation-game">
+      <p>{{ getExplanation(player1Move!, player2Move!) }}</p>
+    </div>
+
+    <button class="btn-secondary btn-play" (click)="nextRound()">
+      {{ rounds && currentRound < rounds ? 'Next Round' : 'See Final Game Result' }}
+    </button>
+  </div>
+
+  <div class="playing-info">
+    <div class="scoreboard">
+      <div class="player-score">
+        <span>{{ player1Name }}: {{ player1Score }}</span>
+      </div>
+      <div class="versus">VS</div>
+      <div class="player-score">
+        <span>{{ player2Name }}: {{ player2Score }}</span>
+      </div>
+    </div>
+    <div class="round-info">
+      Played Rounds: {{ currentRound }} / {{ rounds ?? 0 }}
+    </div>
+  </div>
+
+  <button class="btn-leave-game btn-play" (click)="closeGameAndRedirect()">Leave Game 💔</button>
 </div>

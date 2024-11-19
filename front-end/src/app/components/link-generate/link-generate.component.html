@@ -1,0 +1,21 @@
+<div *ngIf="link" class="shared-link-container">
+
+  <header class="header">
+    <h2>🕹️ Shared this with your human! 🕹️</h2>
+    <p>Great power comes with great responsibility! 🦸 </p>
+    <p>Be careful who you share this with. 👮</p>
+  </header>
+
+  <div class="link-section">
+    <p>Your generated link:</p>
+    <a href="{{ link }}" target="_blank">{{ link }}</a>
+    <button (click)="copyLink()" class="btn-back">Copy Link</button>
+    <span *ngIf="linkCopied" class="link-copied">Link copied!</span>
+  </div>
+
+  <div class="play-section">
+    <p>▶️ Click "Play" when your human is ready!</p>
+    <button (click)="playGame()" class="play-btn btn-primary">Play</button>
+  </div>
+
+</div>

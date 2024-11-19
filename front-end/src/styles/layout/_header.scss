@@ -1,5 +1,20 @@
-.header h1 {
-  font-size: 1.5rem;
+.header {
+  font-size: 0.8rem;
   color: var(--color-title);
-  margin-bottom: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+  margin-top: 0.7rem;
+  margin-bottom: 1.5rem;
 }
+
+.subtitle {
+  font-size: 0.68rem;
+  color: var(--pale-blue);
+  margin-top: 1rem;
+  text-align: center;
+}
+

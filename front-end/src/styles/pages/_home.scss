@@ -10,3 +10,20 @@ app-home {
   flex-direction: column;
   gap: 1rem;
 }
+
+header .title {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+header .title h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  word-spacing: 0.3rem;
+  white-space: normal;
+}
+

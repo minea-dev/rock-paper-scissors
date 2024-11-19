@@ -1,0 +1,31 @@
+.form-group small {
+  font-family: monospace;
+}
+
+.form-group {
+  margin-bottom: 1.8rem;
+}
+
+.text-secondary {
+  margin-bottom: 1rem;
+  color: var(--color-light-purple);
+}
+
+.text-secondary a {
+  color: var( --magenta-pink);
+}
+
+.text-secondary a:hover {
+  color: var(--bright-purple);
+}
+
+.login-screen .form-group input, .register-screen .form-group input {
+  margin-top: 0.4rem;
+}
+
+.login-screen .error-message {
+  font-family: monospace;
+  font-size: 0.8rem;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+}

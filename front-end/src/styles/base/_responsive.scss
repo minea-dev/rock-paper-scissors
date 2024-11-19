@@ -1,17 +1,53 @@
+// responsive.scss
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+  .settings-screen {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .setting-option {
+    width: 100%;
+  }
+
+  .select,
+  input {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .start-game {
+    width: 100%;
+    padding: 1rem 2rem;
+  }
+}
+
+/* Responsividad para pantallas más grandes */
 @media (min-width: 600px) {
   .container {
     max-width: 600px;
+    margin: 0 auto; // Centra el contenido en pantallas grandes
   }
+
   .auth-options {
     gap: 1rem;
   }
+
   .setting-option {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     width: 100%;
   }
+
   label {
     margin-bottom: 0;
+  }
+
+  .select,
+  input {
+    font-size: 1rem;
+    padding: 1rem;
   }
 }

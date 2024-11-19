@@ -4,17 +4,31 @@
   </header>
 
   <section class="login-screen">
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <div class="input-group">
-        <label for="username">Username</label>
-        <input id="username" formControlName="username" type="text" class="input" placeholder="Enter your username">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" (blur)="loginForm.controls['email'].markAsTouched()" />
+        <div *ngIf="isFieldInvalid('email')">
+          <small class="error">Please enter a valid email address.</small>
+        </div>
       </div>
-      <div class="input-group">
+
+      <div class="form-group">
         <label for="password">Password</label>
-        <input id="password" formControlName="password" type="password" class="input" placeholder="Enter your password">
+        <input id="password" type="password" formControlName="password" (blur)="loginForm.controls['password'].markAsTouched()" />
+        <div *ngIf="isFieldInvalid('password')">
+          <small class="error">Password is required</small>
+        </div>
       </div>
-      <button type="submit" class="btn-primary">Log In</button>
+
+      <div class="error-message" *ngIf="errorMessage">
+        <p>{{ errorMessage }}</p>
+      </div>
+      <p class="text-secondary">Don't have an account? <a routerLink="/register" class="link">Sign up</a></p>
+
+      <button class="btn-primary" type="submit" [disabled]="loginForm.invalid">Log In</button>
     </form>
-    <p class="text-secondary">Don't have an account? <a routerLink="/register" class="link">Sign up</a></p>
   </section>
+
+  <button class="btn-back" (click)="goBack()">← Back</button>
 </div>

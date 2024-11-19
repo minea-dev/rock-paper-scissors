@@ -1,13 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-/* @import './styles/abstracts/variables';
+@import './styles/abstracts/variables';
 @import './styles/base/typography';
 @import './styles/base/app';
 @import './styles/base/responsive';
 @import './styles/layout/header';
 @import './styles/components/buttons';
+@import './styles/components/overlay';
+@import './styles/components/inputs-selects';
+@import './styles/components/tables';
 @import './styles/pages/home';
 @import './styles/pages/settings';
-@import './styles/pages/login';
-@import './styles/pages/game-result';
-@import './styles/pages/choose-move';
-*/
+@import './styles/pages/login-register';
+@import './styles/pages/play';
+@import './styles/pages/history';
+@import './styles/pages/link-generated';
+@import './styles/pages/game_finished';

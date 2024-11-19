@@ -25,15 +25,15 @@ public class Round {
 
     @Getter
     @Setter
-    @ManyToOne
-    @JoinColumn(name = "player1_move_id", nullable = false)
-    private Move player1Move;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "player1_move")
+    private MoveName player1Move;
 
     @Getter
     @Setter
-    @ManyToOne
-    @JoinColumn(name = "player2_move_id")
-    private Move player2Move;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "player2_move")
+    private MoveName player2Move;
 
     @Getter
     @Setter
@@ -48,7 +48,32 @@ public class Round {
     public Round() {}
 
     public enum RoundResult {
-        PLAYER1_WIN, PLAYER2_WIN, DRAW
+        PLAYER1_WIN, PLAYER2_WIN, DRAW, CONFIGURED, ONGOING;
+
+        public static RoundResult fromGameResult(Game.GameResult gameResult) {
+            switch (gameResult) {
+                case PLAYER1_WIN: return PLAYER1_WIN;
+                case PLAYER2_WIN: return PLAYER2_WIN;
+                case DRAW: return DRAW;
+                case CONFIGURED: return CONFIGURED;
+                case ONGOING:
+                    throw new IllegalArgumentException("Cannot determine round result from game state: " + gameResult);
+                default:
+                    throw new IllegalArgumentException("Invalid GameResult: " + gameResult);
+            }
+        }
+    }
+
+    public enum MoveName {
+        ROCK, PAPER, SCISSORS, LIZARD, SPOCK, NONE;
+
+        public static MoveName fromString(String move) {
+            for (MoveName moveName : MoveName.values()) {
+                if (moveName.name().equalsIgnoreCase(move)) {
+                    return moveName;
+                }
+            }
+            throw new IllegalArgumentException("Invalid move: " + move);
+        }
     }
 }
-

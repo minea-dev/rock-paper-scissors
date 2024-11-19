@@ -1,3 +1,6 @@
+// app.scss
+
+/* Reset global de márgenes y padding */
 *,
 *::before,
 *::after {
@@ -6,6 +9,7 @@
   box-sizing: border-box;
 }
 
+/* Configuración global de la fuente y la altura */
 html,
 body,
 app-root,
@@ -14,19 +18,13 @@ app-home {
 }
 
 body {
-  font-family: 'Press Start 2P', cursive, sans-serif;
-  background: linear-gradient(130deg, #bdaef1, #953de0, #5a248a, #32196b,#1d0f45, #0e1040);
+  font-family: 'Press Start 2P', monospace, sans-serif;
+  background: linear-gradient(135deg, #180048, #2f004f, #460171);
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
-}
-
-.container {
-  max-width: 400px;
-  width: 90%;
-  padding: 1rem;
-  text-align: center;
+  font-size: 16px; /* Tamaño base para la tipografía */
 }
