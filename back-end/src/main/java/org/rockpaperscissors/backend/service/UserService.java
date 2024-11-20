@@ -21,10 +21,6 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
-
     public Optional<User> findById(Long id) {
         return userRepository.findById(id);
     }
@@ -33,21 +29,7 @@ public class UserService {
         return Optional.ofNullable(userRepository.findByEmail(email));
     }
 
-    public boolean authenticateUser(String email, String inputPassword) {
-        User user = userRepository.findByEmail(email);
-        if (user == null) {
-            return false;
-        }
-        return passwordEncoder.matches(inputPassword, user.getPassword());
-    }
-
     public User save(User user) {
-        //String encryptedPassword = passwordEncoder.encode(user.getPassword());
-        //user.setPassword(encryptedPassword);
         return userRepository.save(user);
-    }
-
-    public void deleteById(Long id) {
-        userRepository.deleteById(id);
     }
 }

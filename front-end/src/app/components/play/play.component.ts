@@ -3,6 +3,7 @@ import { GameService } from '../../services/game.service';
 import {NgForOf, NgIf, NgOptimizedImage, UpperCasePipe} from '@angular/common';
 import {NavigationService} from '../../services/navigation.service';
 import {AuthService} from '../../services/auth.service';
+import {interval, Subscription, switchMap, takeWhile} from 'rxjs';
 
 @Component({
   selector: 'app-play',
@@ -42,6 +43,9 @@ export class PlayComponent implements OnInit {
   player1Score: number = 0;
   player2Score: number = 0;
   draws: number = 0;
+  errorMessage: string | null = null;
+  private subscription: Subscription | null = null;
+  private isGameActive = true;
 
   constructor(
     private gameService: GameService,
@@ -63,6 +67,28 @@ export class PlayComponent implements OnInit {
 
     if (this.gameId) {
       this.fetchGameDetails(this.gameId);
+      this.subscription = interval(3000)
+        .pipe(
+          takeWhile(() => this.isGameActive),
+          switchMap(() => this.gameService.checkGameResult(this.gameId!))
+        )
+        .subscribe({
+          next: (state) => {
+            this.gameResult = state.gameResult;
+            console.log('Estado del juego:', state);
+            console.log(this.gameResult + " " + state.gameResult)
+            console.log(state.gameResult === "ABANDONED")
+          if (this.gameResult === "ABANDONED") {
+              this.isGameActive = false;
+              alert("The other human just left the game 😔");
+              this.navigationService.navigateTo('/game-finished');
+            }
+          },
+          error: (error) => {
+            this.errorMessage = error.message;
+          }
+        });
+
     } else {
       alert('No game found!');
       this.loading = false;
@@ -70,6 +96,12 @@ export class PlayComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+
+  }
 
   fetchGameDetails(gameId: string): void {
     this.loading = true;
@@ -352,6 +384,8 @@ export class PlayComponent implements OnInit {
     }
   }
   closeGameAndRedirect(): void {
+    this.gameService.leaveGame(localStorage.getItem('gameId')!).subscribe(response => {
+    })
     const isLogged = !!localStorage.getItem('userName');
     this.authService.closeGame(isLogged);
     this.navigationService.navigateTo('');

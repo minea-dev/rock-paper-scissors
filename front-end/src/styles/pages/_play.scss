@@ -83,7 +83,7 @@
   width: 300px;
   min-height: 50px;
   font-family: monospace;
-  font-size: 1rem;
+  font-size: 0.8rem;
   background-color: rgba(128, 0, 128, 0.4);
   color: white;
   border-radius: 10px;
@@ -161,13 +161,56 @@
   margin-bottom: 1.5rem;
 }
 
+.play-component {
+  justify-content: center;
+  padding: 0 15px;
+}
+
 .loading-text {
   font-family: monospace;
   margin-top: 1.5rem;
+  justify-content: center;
+  padding-left: 1rem;
 }
 
 
+@media (max-width: 768px) {
+  .move-explanation {
+    display: none;
+  }
 
+  .play-component {
+    justify-content: flex-start;
+  }
 
+  .move-item-container {
+    gap: 5px;
+    width: 100%;
+  }
 
+  .move-item {
+    width: 100%;
+    text-align: center;
+  }
 
+  .move-icon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .move-name {
+    font-size: 0.9rem;
+  }
+
+  .next-btn {
+    margin-left: 15px;
+  }
+
+  .prev-btn {
+    margin-right: 15px;
+  }
+
+  .move-item {
+    margin-bottom: 0.7rem;
+  }
+}

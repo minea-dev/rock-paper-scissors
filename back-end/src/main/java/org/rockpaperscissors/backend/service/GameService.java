@@ -29,14 +29,6 @@ public class GameService {
         return gameRepository.findByPlayer1Id(playerId);
     }
 
-    public List<Game> findByPlayer2Id(Long playerId) {
-        return gameRepository.findByPlayer2Id(playerId);
-    }
-
-    public List<Game> findByIsRealTime(boolean isRealTime) {
-        return gameRepository.findByIsRealTime(isRealTime);
-    }
-
     public void save(Game game) {
         gameRepository.save(game);
     }

@@ -12,12 +12,10 @@ public class PasswordService {
         this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
     }
 
-    // Metodo para encriptar la contraseña
     public String encryptPassword(String password) {
         return bCryptPasswordEncoder.encode(password);
     }
 
-    // Metodo para verificar la contraseña
     public boolean checkPassword(String rawPassword, String encodedPassword) {
         return bCryptPasswordEncoder.matches(rawPassword, encodedPassword);
     }

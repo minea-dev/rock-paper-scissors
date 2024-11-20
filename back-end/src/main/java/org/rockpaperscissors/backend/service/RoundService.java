@@ -41,27 +41,7 @@ public class RoundService {
         return null;
     }
 
-    public Optional<Round> findByGameIdAndRoundNumber(Long gameId, int roundNumber) {
-        return roundRepository.findByGameIdAndRoundNumber(gameId, roundNumber).stream().findFirst();
-    }
-
     public Round save(Round round) {
         return roundRepository.save(round);
-    }
-
-    public Round playRound(long gameId, String player1Move, String player2Move, String roundResult) {
-        Round newRound = new Round();
-        newRound.setGame(gameRepository.findById(gameId));
-        newRound.setRoundNumber(gameRepository.findById(gameId).getRounds());
-        newRound.setPlayer1Move(MoveName.valueOf(player1Move.toUpperCase()));
-        newRound.setPlayer2Move(MoveName.valueOf(player2Move.toUpperCase()));
-        newRound.setResult(Round.RoundResult.valueOf(roundResult.toUpperCase()));
-
-        return roundRepository.save(newRound);
-    }
-
-    public int getNextRoundNumber(Long gameId) {
-        Optional<Integer> maxRoundNumber = roundRepository.findMaxRoundNumberByGameId(gameId);
-        return maxRoundNumber.map(roundNumber -> roundNumber + 1).orElse(1); // Si no hay rondas, empieza en 1
     }
 }

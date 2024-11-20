@@ -28,7 +28,7 @@
         <button class="carousel-btn next-btn" (click)="nextMove()"><span>&#8594;</span></button>
       </div>
     </div>
-    <button class="btn-primary" (click)="throwMove()">Throw!</button>
+    <button class="btn-primary throw-btn" (click)="throwMove()">Throw!</button>
   </section>
 
 
@@ -56,7 +56,7 @@
       </div>
       <div class="versus">VS</div>
       <div class="player-score">
-        <span>{{ player2Name }}: {{ player2Score }}</span>
+        <span>{{ player2Name || 'Opponent' }}: {{ player2Score }}</span>
       </div>
     </div>
     <div class="round-info">

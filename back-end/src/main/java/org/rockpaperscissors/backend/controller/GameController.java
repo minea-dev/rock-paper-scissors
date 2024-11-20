@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -29,7 +28,6 @@ public class GameController {
     @Autowired
     private UserService userService;
 
-    // 1- GAME --> CONFIGURED
     @PostMapping("/start")
     public ResponseEntity<?> startGame(@RequestBody Map<String, Object> gameData) {
         try {
@@ -55,9 +53,6 @@ public class GameController {
             newGame.setRounds(rounds);
             newGame.setIsRealTime(isRealTime);
             newGame.setResult(Game.GameResult.CONFIGURED);
-            if (isRealTime) {
-                newGame.setGameState(Game.GameState.WAITING);
-            }
             gameService.save(newGame);
 
             return ResponseEntity.ok(Map.of(
@@ -69,7 +64,6 @@ public class GameController {
         }
     }
 
-    // 1.2- GAME --> CONFIGURED FOR USER2
     @PostMapping("/set-player2")
     public ResponseEntity<?> setGameForPlayer2(@RequestBody Map<String, Object> gameData) {
         try {
@@ -80,7 +74,6 @@ public class GameController {
             Optional<User> player2 = userService.findById(player2Id);
 
             confiGame.setPlayer2(player2.get());
-            confiGame.setGameState(Game.GameState.IN_PROGRESS);
 
             gameService.save(confiGame);
 
@@ -93,7 +86,6 @@ public class GameController {
         }
     }
 
-    // 2- GAME --> Sacar game por Id
     @GetMapping("/game-details")
     public ResponseEntity<?> gameDetails(@RequestHeader("gameId") String gameId) {
         Long id = Long.valueOf(gameId);
@@ -123,7 +115,6 @@ public class GameController {
         ));
     }
 
-    // 3 - JUGAR RONDA CONTRA MÁQUINA
     @PostMapping("/play-round-machine")
     public ResponseEntity<?> playRoundMachine(@RequestBody Map<String, Object> gameData) {
         try {
@@ -182,8 +173,6 @@ public class GameController {
         }
     }
 
-    // JUGAR RONDA CONTRA OPONENTE
-    // 3 - JUGAR RONDA CONTRA MÁQUINA
     @PostMapping("/play-round-human")
     public ResponseEntity<?> playRoundHuman(@RequestBody Map<String, Object> gameData) {
         try {
@@ -222,7 +211,8 @@ public class GameController {
                             "success", true,
                             "playedBy2", false,
                             "roundId", playingRound.getId(),
-                            "player2Name", game.getPlayer2() != null ? game.getPlayer2().getUsername() : ""
+                            "player2Name", game.getPlayer2() != null ? game.getPlayer2().getUsername() : "",
+                            "gameResult", game.getResult().toString()
                     ));
                 }
                 Game.GameResult roundResult = gameLogicService.determineRoundResult(playingRound.getPlayer1Move().name(), playingRound.getPlayer2Move().name(), modeString);
@@ -232,7 +222,6 @@ public class GameController {
                 if (game.getResult().equals(Game.GameResult.ONGOING) || game.getResult().equals(Game.GameResult.CONFIGURED) && game.getRounds() == 1) {
                     List<Round> roundsPlayed = roundService.findByGameId(gameId);
                     if (roundsPlayed.size() == game.getRounds()) {
-                        game.setGameState(Game.GameState.FINISHED);
                         gameService.save(game);
                         gameLogicService.determineGameResult(gameId);
                     }
@@ -276,7 +265,6 @@ public class GameController {
         }
     }
 
-    // Chequear para sacar resultado
     @GetMapping("/round-details")
     public ResponseEntity<?> roundDetails(@RequestHeader("roundId") String roundId) {
         Long id = Long.valueOf(roundId);
@@ -287,7 +275,8 @@ public class GameController {
             return ResponseEntity.ok(Map.of(
                     "success", true,
                     "playedBy2", false,
-                    "roundId", currentRound.getId()
+                    "roundId", currentRound.getId(),
+                    "gameResult", currentRound.getGame().getResult().toString()
             ));
         }
 
@@ -300,6 +289,43 @@ public class GameController {
                 "roundResult", currentRound.getResult().name(),
                 "remainingRounds", currentRound.getGame().getRounds() - currentRound.getRoundNumber(),
                 "gameResult", currentRound.getGame().getResult().toString()
+        ));
+    }
+
+    @GetMapping("/leave-game")
+    public ResponseEntity<?> leaveGame(@RequestHeader("gameId") String gameId) {
+        Long id = Long.valueOf(gameId);
+        Game game = gameService.findById(id);
+
+        if (game.getResult().equals(Game.GameResult.ONGOING) || game.getResult().equals(Game.GameResult.CONFIGURED)) {
+            game.setResult(Game.GameResult.ABANDONED);
+            gameService.save(game);
+
+            return ResponseEntity.ok(Map.of(
+                    "success", true,
+                    "gameResult", game.getResult().toString()
+            ));
+        }
+        return ResponseEntity.ok(Map.of(
+                "success", false,
+                "gameResult", game.getResult().toString()
+        ));
+    }
+
+    @GetMapping("/check-game-result")
+    public ResponseEntity<?> checkGameResult(@RequestHeader("gameId") String gameId) {
+        Long id = Long.valueOf(gameId);
+        Game game = gameService.findById(id);
+
+        if (game != null) {
+            return ResponseEntity.ok(Map.of(
+                    "success", true,
+                    "gameResult", game.getResult().toString()
+            ));
+        }
+        return ResponseEntity.ok(Map.of(
+                "success", false,
+                "gameResult", game.getResult().toString()
         ));
     }
 }
