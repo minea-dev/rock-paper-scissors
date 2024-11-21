@@ -7,7 +7,7 @@ The home screen is the entry point of the game. From here, you can:
 Configure your game settings.
 Choose between single-player and multiplayer modes.
 Access your game history.
----
+
 ## Game Settings (Unregistered User)
 <img src="./readme/3.png" alt="Settings" width="600"/>
 <br>
@@ -16,6 +16,7 @@ In the game settings screen:
 Rounds: Set the number of rounds (e.g., 3, 5).
 Game Mode: Select "Classic" (Rock, Paper, Scissors) or "Extended" (Rock, Paper, Scissors, Lizard, Spock).
 Play Options: Start a single-player game against the computer or create a multiplayer game with a sharable link.
+
 ### Game Settings (Logged-in User)
 <img src="./readme/6.png" alt="Settings-logged" width="600"/>
 <br>
@@ -29,7 +30,6 @@ You can save game results and easily play with friends.
 <br>
 If you choose multiplayer, a unique link is generated. Share this link with a friend to join the same game.
 
----
 ## Play
 <img src="./readme/8.png" alt="Play" width="600"/>
 <br>
@@ -50,7 +50,6 @@ After sharing the link, the game will wait for the second player to join.
 Both players select their moves in secret.
 
 ### Round Results
-
 <img src="./readme/16.png" alt="Shared-round-play" width="600"/>
 <br>
 Once both players submit their moves, the results for the round are displayed.
@@ -63,7 +62,6 @@ At the end of the game:
 The overall winner is displayed.
 A round-by-round summary is available.
 Login & Registration
----
 
 ## Register
 <img src="./readme/4.png" alt="Register" width="600"/>
@@ -82,7 +80,7 @@ Once logged in:
 
 Your profile name and avatar will be displayed.
 You can access additional features, including saved game history.
----
+
 ## Game History
 <img src="./readme/11.png" alt="Game-history" width="600"/>
 <br>
