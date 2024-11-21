@@ -50,7 +50,8 @@ After sharing the link, the game will wait for the second player to join.
 Both players select their moves in secret.
 
 ### Round Results
-<img src="./readme/16.png" alt="Shared-round-play" width=600"/>
+
+<img src="./readme/16.png" alt="Shared-round-play" width="600"/>
 <br>
 Once both players submit their moves, the results for the round are displayed.
 
