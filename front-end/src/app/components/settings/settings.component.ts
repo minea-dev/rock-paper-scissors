@@ -54,6 +54,7 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.onpopstate = null;
     const isLogged = !!localStorage.getItem('userName');
     this.authService.closeGame(isLogged);
 
@@ -114,6 +115,7 @@ export class SettingsComponent implements OnInit {
             this.navigationService.navigateTo('/');
           }
         }
+        console.log(details.player1Name)
         this.rounds = details.rounds;
         this.mode = this.formatMode(details.mode.toLowerCase());
         this.player1name = details.player1Name + " 🧑‍🚀";

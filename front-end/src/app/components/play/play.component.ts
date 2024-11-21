@@ -3,7 +3,7 @@ import { GameService } from '../../services/game.service';
 import {NgForOf, NgIf, NgOptimizedImage, UpperCasePipe} from '@angular/common';
 import {NavigationService} from '../../services/navigation.service';
 import {AuthService} from '../../services/auth.service';
-import {interval, Subscription, switchMap, takeWhile} from 'rxjs';
+import {interval, Subject, Subscription, switchMap, takeUntil, takeWhile} from 'rxjs';
 
 @Component({
   selector: 'app-play',
@@ -67,28 +67,26 @@ export class PlayComponent implements OnInit {
 
     if (this.gameId) {
       this.fetchGameDetails(this.gameId);
-      this.subscription = interval(3000)
-        .pipe(
-          takeWhile(() => this.isGameActive),
-          switchMap(() => this.gameService.checkGameResult(this.gameId!))
-        )
-        .subscribe({
-          next: (state) => {
-            this.gameResult = state.gameResult;
-            console.log('Estado del juego:', state);
-            console.log(this.gameResult + " " + state.gameResult)
-            console.log(state.gameResult === "ABANDONED")
-          if (this.gameResult === "ABANDONED") {
-              this.isGameActive = false;
-              alert("The other human just left the game 😔");
-              this.navigationService.navigateTo('/game-finished');
+      if (this.userNum) {
+        this.subscription = interval(3000)
+          .pipe(
+            takeWhile(() => this.isGameActive),
+            switchMap(() => this.gameService.checkGameResult(this.gameId!))
+          )
+          .subscribe({
+            next: (state) => {
+              this.gameResult = state.gameResult;
+              if (this.gameResult === "ABANDONED") {
+                this.isGameActive = false;
+                alert("The other human just left the game 😔");
+                this.navigationService.navigateTo('/game-finished');
+              }
+            },
+            error: (error) => {
+              this.errorMessage = error.message;
             }
-          },
-          error: (error) => {
-            this.errorMessage = error.message;
-          }
-        });
-
+          });
+      }
     } else {
       alert('No game found!');
       this.loading = false;
@@ -100,7 +98,6 @@ export class PlayComponent implements OnInit {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
-
   }
 
   fetchGameDetails(gameId: string): void {
@@ -208,7 +205,8 @@ export class PlayComponent implements OnInit {
         },
         error: (err) => {
           this.loading = false;
-          alert('Error processing round');
+          alert("Problems with machines 😞");
+          this.navigationService.navigateTo('/game-finished');
         },
       });
     } else {
@@ -229,7 +227,8 @@ export class PlayComponent implements OnInit {
         },
         error: (err) => {
           this.loadingOpponent = false;
-          alert('Error processing round');
+          alert("Game was abandoned 😞");
+          this.navigationService.navigateTo('/game-finished');
         },
       });
     }
@@ -374,6 +373,7 @@ export class PlayComponent implements OnInit {
 
   nextRound(): void {
     if (this.gameResult !== "CONFIGURED" && this.gameResult !== "ONGOING") {
+      this.isGameActive = false;
       this.navigationService.navigateTo('/game-finished');
     } else {
       this.roundResult = null;

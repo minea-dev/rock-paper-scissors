@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class GameService {
@@ -26,7 +27,14 @@ public class GameService {
     }
 
     public List<Game> findByPlayerId(Long playerId) {
-        return gameRepository.findByPlayer1Id(playerId);
+        List<Game> player1Games = gameRepository.findByPlayer1Id(playerId);
+        List<Game> player2Games = gameRepository.findByPlayer2Id(playerId);
+
+        List<Game> allGames = player1Games.stream()
+                .collect(Collectors.toList());
+        allGames.addAll(player2Games);
+
+        return allGames;
     }
 
     public void save(Game game) {
