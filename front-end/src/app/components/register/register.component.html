@@ -49,7 +49,7 @@
           />
         </div>
         <div *ngIf="isFieldInvalid('password')">
-          <small class="error">{{ getPasswordErrorMessage() }}</small>
+          <small class="error" [innerHTML]="getPasswordErrorMessage()"></small>
         </div>
       </div>
 

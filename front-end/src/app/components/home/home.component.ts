@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
+    window.onpopstate = null;
     const isLogged = !!localStorage.getItem('userName');
     this.authService.closeGame(isLogged);
 

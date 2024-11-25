@@ -10,7 +10,7 @@
     <p>Your generated link:</p>
     <a href="{{ link }}" target="_blank">{{ link }}</a>
     <button (click)="copyLink()" class="btn-back">Copy Link</button>
-    <span *ngIf="linkCopied" class="link-copied">Link copied!</span>
+    <span class="link-copied">{{ linkCopied ? 'Link copied!' : '\u200B' }}</span>
   </div>
 
   <div class="play-section">

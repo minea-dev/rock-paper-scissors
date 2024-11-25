@@ -24,11 +24,10 @@ public class GameHistoryController {
     private RoundService roundsService;
 
     /**
-     * Endpoint to retrieve detailed information about a specific game by its gameId.
-     * It includes player names, the number of rounds, the game result, and round details.
+     * Retrieves details of a specific game including players, rounds, and results.
      *
-     * @param gameId The ID of the game to retrieve details for.
-     * @return A response containing the game details and round information.
+     * @param gameId The ID of the game from the request header.
+     * @return A ResponseEntity with game details or an error message.
      */
     @GetMapping("/game-details")
     public ResponseEntity<?> gameDetails(@RequestHeader("gameId") String gameId) {
@@ -63,13 +62,11 @@ public class GameHistoryController {
         }
     }
 
-
     /**
-     * Endpoint to retrieve all games associated with a specific user by their userId.
-     * It includes game details, round counts, and individual round details for each game.
+     * Retrieves all games associated with a specific user, including game summaries and round details.
      *
-     * @param userId The ID of the user to retrieve games for.
-     * @return A response containing the user’s game history and associated details.
+     * @param userId The ID of the user from the request header.
+     * @return A ResponseEntity with the user's games or an error message.
      */
     @GetMapping("/user-games")
     public ResponseEntity<?> userGameDetails(@RequestHeader("userId") String userId) {

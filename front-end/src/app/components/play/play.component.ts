@@ -235,11 +235,20 @@ export class PlayComponent implements OnInit {
   }
 
   private pollForOpponentMove(roundId: string): void {
+    const timeout = 180000;
+    const startTime = Date.now();
+
     const interval = setInterval(() => {
+      if (Date.now() - startTime > timeout) {
+        clearInterval(interval);
+        this.handleTimeout();
+        return;
+      }
       this.gameService.checkOpponentMove(roundId).subscribe(response => {
         if (response.success && response.playedBy2) {
           clearInterval(interval);
-          if (!this.player2Name) {
+
+          if (!this.player2Name || this.player2Name === "") {
             this.player2Name = response.player2Name;
             this.opponentName = this.player2Name;
           }
@@ -248,6 +257,11 @@ export class PlayComponent implements OnInit {
         }
       });
     }, 3000);
+  }
+
+  private handleTimeout(): void {
+    alert('You have not received a response from your human opponent in the last 3 minutes. The game has been closed.');
+    this.closeGameAndRedirect();
   }
 
   private getResults(response: {
@@ -286,11 +300,11 @@ export class PlayComponent implements OnInit {
       if (roundResult === 'PLAYER1_WIN') {
         return this.userNum === '1'
           ? '🫵 You have won this round! 🎖️'
-          : `🙌 ${this.player1Name} has won this round! 😞`;
+          : `😿 ${this.player1Name} has won this round! 😔`;
       } else if (roundResult === 'PLAYER2_WIN') {
         return this.userNum === '2'
           ? '🫵 You have won this round! 🎖️'
-          : `🙌 ${this.player2Name} has won this round! 😞`;
+          : `😿 ${this.player2Name} has won this round! 😔`;
       } else if (roundResult === 'DRAW') {
         return 'It’s a tie! Both played the same move! 🤝';
       }

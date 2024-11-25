@@ -51,7 +51,6 @@ export class RegisterComponent {
         if (response.success) {
           this.navigationService.goBack();
         } else {
-          console.log(response);
           this.errorMessage = response.message;
         }
       });
@@ -68,7 +67,7 @@ export class RegisterComponent {
     if (passwordControl?.hasError('required')) return 'Password is required';
     if (passwordControl?.hasError('minlength')) return 'Password must be at least 8 characters long';
     if (passwordControl?.hasError('maxlength')) return 'Password cannot exceed 16 characters';
-    if (passwordControl?.hasError('pattern')) return 'Password must contain at least one uppercase letter, one lowercase letter, and one number';
+    if (passwordControl?.hasError('pattern')) return 'Password must contain at least one uppercase letter,<br />none lowercase letter, and one number';
     return '';
   }
 

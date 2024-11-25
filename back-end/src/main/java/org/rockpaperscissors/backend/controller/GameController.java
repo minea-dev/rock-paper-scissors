@@ -28,6 +28,13 @@ public class GameController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Creates and configures a new game using provided data.
+     *
+     * @param gameData Details like player ID, mode, rounds, and real-time flag.
+     * @return A ResponseEntity with the success status and game ID.
+     * @throws RuntimeException If input data is invalid or processing fails.
+     */
     @PostMapping("/start")
     public ResponseEntity<?> startGame(@RequestBody Map<String, Object> gameData) {
         try {
@@ -64,6 +71,13 @@ public class GameController {
         }
     }
 
+    /**
+     * Sets player2 for an existing game.
+     *
+     * @param gameData Includes game ID and player2 ID.
+     * @return A ResponseEntity with the success status and updated game ID.
+     * @throws RuntimeException If game or player2 data is invalid.
+     */
     @PostMapping("/set-player2")
     public ResponseEntity<?> setGameForPlayer2(@RequestBody Map<String, Object> gameData) {
         try {
@@ -86,6 +100,12 @@ public class GameController {
         }
     }
 
+    /**
+     * Retrieves game details by game ID.
+     *
+     * @param gameId The ID of the game from the request header.
+     * @return A ResponseEntity with game details or an error message.
+     */
     @GetMapping("/game-details")
     public ResponseEntity<?> gameDetails(@RequestHeader("gameId") String gameId) {
         Long id = Long.valueOf(gameId);
@@ -115,6 +135,13 @@ public class GameController {
         ));
     }
 
+    /**
+     * Processes a round played against the machine.
+     *
+     * @param gameData Includes game ID, player1 ID, rounds, and player1's move.
+     * @return A ResponseEntity with round results and updated game status.
+     * @throws RuntimeException If input data or game state is invalid.
+     */
     @PostMapping("/play-round-machine")
     public ResponseEntity<?> playRoundMachine(@RequestBody Map<String, Object> gameData) {
         try {
@@ -173,6 +200,13 @@ public class GameController {
         }
     }
 
+    /**
+     * Processes a round played against another human player.
+     *
+     * @param gameData Includes game ID, current player, current round, and the move made.
+     * @return A ResponseEntity with round results and updated game status.
+     * @throws RuntimeException If input data or game state is invalid.
+     */
     @PostMapping("/play-round-human")
     public ResponseEntity<?> playRoundHuman(@RequestBody Map<String, Object> gameData) {
         try {
@@ -265,6 +299,12 @@ public class GameController {
         }
     }
 
+    /**
+     * Retrieves details of a specific round by round ID.
+     *
+     * @param roundId The ID of the round from the request header.
+     * @return A ResponseEntity with round details and game status.
+     */
     @GetMapping("/round-details")
     public ResponseEntity<?> roundDetails(@RequestHeader("roundId") String roundId) {
         Long id = Long.valueOf(roundId);
@@ -292,6 +332,12 @@ public class GameController {
         ));
     }
 
+    /**
+     * Marks a game as abandoned by the current player.
+     *
+     * @param gameId The ID of the game from the request header.
+     * @return A ResponseEntity with the updated game result.
+     */
     @GetMapping("/leave-game")
     public ResponseEntity<?> leaveGame(@RequestHeader("gameId") String gameId) {
         Long id = Long.valueOf(gameId);
@@ -312,6 +358,12 @@ public class GameController {
         ));
     }
 
+    /**
+     * Checks the current result of a game by game ID.
+     *
+     * @param gameId The ID of the game from the request header.
+     * @return A ResponseEntity with the current game result.
+     */
     @GetMapping("/check-game-result")
     public ResponseEntity<?> checkGameResult(@RequestHeader("gameId") String gameId) {
         Long id = Long.valueOf(gameId);

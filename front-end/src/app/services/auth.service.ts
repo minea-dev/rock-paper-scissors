@@ -183,6 +183,8 @@ export class AuthService {
    */
   public logout(): void {
     localStorage.clear();
+    this.userNameSubject.next(null);
+    this.userIdSubject.next(null);
     this.isLoggedInSubject.next(false);
   }
 

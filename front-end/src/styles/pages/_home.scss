@@ -27,3 +27,10 @@ header .title h1 {
   white-space: normal;
 }
 
+@media (max-width: 800px) {
+  .home button {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: auto;
+  }
+}

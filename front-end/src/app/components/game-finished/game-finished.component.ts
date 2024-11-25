@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HistoryService } from '../../services/history.service';
 import { AuthService } from '../../services/auth.service';
 import {NavigationService} from '../../services/navigation.service';
-import {Subscription} from 'rxjs';  // Importa AuthService
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-game-finished',
@@ -46,7 +46,6 @@ export class GameFinishedComponent implements OnInit {
         next: (data) => {
           this.gameDetails = data;
           this.loading = false;
-          //this.authService.closeGame(this.isLoggedIn);
         },
         error: (err) => {
           this.error = 'Error retrieving game details.';
@@ -60,7 +59,6 @@ export class GameFinishedComponent implements OnInit {
   }
 
   translateRoundResult(result: string, player1: string, player2: string): string {
-    console.log(result, player1, player2, this.userName || this.guestName);
     return this.historyService.translateRoundResult(result, player1, player2, this.userName || this.guestName);
   }
 

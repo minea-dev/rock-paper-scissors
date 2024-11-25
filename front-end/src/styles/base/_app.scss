@@ -1,6 +1,3 @@
-// app.scss
-
-/* Reset global de márgenes y padding */
 *,
 *::before,
 *::after {
@@ -9,7 +6,6 @@
   box-sizing: border-box;
 }
 
-/* Configuración global de la fuente y la altura */
 html,
 body,
 app-root,
@@ -26,5 +22,5 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  font-size: 16px; /* Tamaño base para la tipografía */
+  font-size: 16px;
 }
