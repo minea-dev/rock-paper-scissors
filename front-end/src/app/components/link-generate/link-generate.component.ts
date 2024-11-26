@@ -33,14 +33,29 @@ export class LinkGenerateComponent implements OnInit {
 
   copyLink(): void {
     if (this.link) {
-      navigator.clipboard.writeText(this.link).then(() => {
+      if (window.location.protocol === "http:") {
+        const textArea = document.createElement('textarea');
+        textArea.value = this.link;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+
         this.linkCopied = true;
         setTimeout(() => {
           this.linkCopied = false;
         }, 2000);
-      }).catch(err => {
-        console.error('Failed to copy link: ', err);
-      });
+
+      } else {
+        navigator.clipboard.writeText(this.link).then(() => {
+          this.linkCopied = true;
+          setTimeout(() => {
+            this.linkCopied = false;
+          }, 2000);
+        }).catch(err => {
+          console.error('Failed to copy link: ', err);
+        });
+      }
     }
   }
 

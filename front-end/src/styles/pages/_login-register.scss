@@ -33,3 +33,11 @@
 .register-screen .error-message {
   white-space: pre-line;
 }
+
+@media (max-width: 800px) {
+  .login-screen, .register-screen {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: auto;
+  }
+}

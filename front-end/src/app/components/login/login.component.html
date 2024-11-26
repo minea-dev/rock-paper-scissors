@@ -27,8 +27,7 @@
       <p class="text-secondary">Don't have an account? <a routerLink="/register" class="link">Sign up</a></p>
 
       <button class="btn-primary" type="submit" [disabled]="loginForm.invalid">Log In</button>
+      <button class="btn-back" (click)="goBack()">← Back</button>
     </form>
   </section>
-
-  <button class="btn-back" (click)="goBack()">← Back</button>
 </div>

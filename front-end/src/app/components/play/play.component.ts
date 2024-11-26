@@ -247,8 +247,7 @@ export class PlayComponent implements OnInit {
       this.gameService.checkOpponentMove(roundId).subscribe(response => {
         if (response.success && response.playedBy2) {
           clearInterval(interval);
-
-          if (!this.player2Name || this.player2Name === "") {
+          if (this.player2Name === "" || this.player2Name === undefined) {
             this.player2Name = response.player2Name;
             this.opponentName = this.player2Name;
           }

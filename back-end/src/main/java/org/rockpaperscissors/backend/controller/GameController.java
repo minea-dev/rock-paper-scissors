@@ -328,7 +328,8 @@ public class GameController {
                 "player2Move", currentRound.getPlayer2Move(),
                 "roundResult", currentRound.getResult().name(),
                 "remainingRounds", currentRound.getGame().getRounds() - currentRound.getRoundNumber(),
-                "gameResult", currentRound.getGame().getResult().toString()
+                "gameResult", currentRound.getGame().getResult().toString(),
+                "player2Name", currentRound.getGame().getPlayer2().getUsername()
         ));
     }
 
