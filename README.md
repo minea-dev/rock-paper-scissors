@@ -122,7 +122,7 @@ This project is a full-stack **Rock-Paper-Scissors** game with the **Front-End b
 - **Angular CLI** (Global installation).
 
 ### Back-End (Spring Boot)
-- **Java 17+** (For compiling and running the application).
+- **Java 23** (For compiling and running the application).
 - **Maven** (For dependency management).
 - **Spring Boot 3.3** (Backend framework).
 - **MySQL** or another relational database.
