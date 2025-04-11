@@ -1,9 +1,5 @@
 # 🎮 Rock Paper Scissors - User Guide 🎮
 
-You can play the game by visiting the following link:
-
-👉 [Rock Paper Scissors Game - Live Demo](http://134.209.232.182:4200/)
-
 ## Home
 <img src="./readme/1.png" alt="Home" width="600"/>
 <br>
